@@ -17,6 +17,16 @@ int main( int argc, char *argv[] ) {
     char message[] = "test message";
     mq_send( server_queue, message, strlen( message ), 0 );
 
+
+
+    mq_close( clientQueue );
+    mq_close( serverQueue );
+
+    mq_unlink( SERVER_QUEUE );
+    mq_unlink( CLIENT_QUEUE );
+
+    return EXIT_SUCCESS;
+
   if ( client_queue == -1 )
     fail( "Can't open message queue" );
 }
