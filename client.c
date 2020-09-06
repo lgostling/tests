@@ -14,7 +14,7 @@ int main( int argc, char *argv[] ) {
     char message[] = "test message";
     mq_send( server_queue, message, strlen( message ), 0 );
 
-  if ( myQueue == -1 )
+  if ( client_queue == -1 )
     fail( "Can't open message queue" );
 }
  
