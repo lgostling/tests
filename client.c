@@ -4,7 +4,7 @@
 // Print out an error message and exit.
 static void fail( char const *message ) {
   fprintf( stderr, "%s\n", message );
-  exit( EXIT_FAILURE );
+  exit( 1 );
 }
 
 int main( int argc, char *argv[] ) {
