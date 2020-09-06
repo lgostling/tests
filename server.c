@@ -42,12 +42,18 @@ int main( int argc, char *argv[] ) {
   while ( running ) {
     char buffer[ MESSAGE_LIMIT ];
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
-    char message[len + 1];
-    for(int i = 0; i < len; i++) {
-      message[i] = buffer[i];
+    
+    if(len > 0) {
+      char message[len + 1];
+      for(int i = 0; i < len; i++) {
+        message[i] = buffer[i];
+      }
+      message[len] = NULL;
+      printf("recived : %s", message);
+    } 
+    else {
+      fail("unable to receive message.\n");
     }
-    message[len] = NULL;
-    printf("recived : %s", message);
   }
 
   // Close our two message queues (and delete them).
