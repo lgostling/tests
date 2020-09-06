@@ -17,8 +17,6 @@ int main( int argc, char *argv[] ) {
     char message[] = "test message";
     mq_send( server_queue, message, strlen( message ), 0 );
 
-
-
     mq_close( client_queue );
     mq_close( server_queue );
 
