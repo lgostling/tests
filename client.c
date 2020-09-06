@@ -19,8 +19,8 @@ int main( int argc, char *argv[] ) {
 
 
 
-    mq_close( clientQueue );
-    mq_close( serverQueue );
+    mq_close( client_queue );
+    mq_close( server_queue );
 
     mq_unlink( SERVER_QUEUE );
     mq_unlink( CLIENT_QUEUE );
