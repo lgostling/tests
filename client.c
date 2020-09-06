@@ -2,6 +2,7 @@
 #include <mqueue.h>
 #include <stdio.h>
 #include <errno.h>
+#include <stdlib.h>
 
 // Print out an error message and exit.
 static void fail( char const *message ) {
