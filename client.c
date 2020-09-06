@@ -1,10 +1,12 @@
- #include "common.h"
- #include <mqueue.h>
+#include "common.h"
+#include <mqueue.h>
+#include <stdio.h>
+#include <errno.h>
 
 // Print out an error message and exit.
 static void fail( char const *message ) {
   fprintf( stderr, "%s\n", message );
-  exit( 1 );
+  exit( EXIT_FAILURE );
 }
 
 int main( int argc, char *argv[] ) {
