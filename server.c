@@ -40,7 +40,7 @@ int main( int argc, char *argv[] ) {
 
   // Repeatedly read and process client messages.
   while ( running ) {
-    fprint("running serevr\n");
+    fprintf(stderr, "running serevr\n");
     char buffer[ MESSAGE_LIMIT  + 1];
     memset(buffer, '\0', MESSAGE_LIMIT + 1);
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
@@ -50,7 +50,7 @@ int main( int argc, char *argv[] ) {
         message[i] = buffer[i];
       }
       message[len] = NULL;
-      fprintf("recived : %s", message);
+      printf("recived : %s", message);
 
     } 
     else {
