@@ -59,7 +59,7 @@ int main( int argc, char *argv[] ) {
     memset( buffer, '\0', MESSAGE_LIMIT + 1 );
     // Receive message from client on serverQueue
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
-    fprintf(stderr, "%s" buffer);
+    fprintf(stderr, "%s" &buffer);
     // Process message, error checking    
     char keyword[ MESSAGE_LIMIT + 1 ];
     int bufIdx = 0;
