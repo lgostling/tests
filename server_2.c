@@ -95,14 +95,14 @@ int main( int argc, char *argv[] ) {
         int a  = atoi(indexA);
 
         // increment
-        if(strcmp("inc", command[0]) == 0) {
-            fprintf(stderr, "TEST 1 \n");
-            //values[a] = values[a] + 1;
+        if(strcmp("inc", command) == 0) {
+            values[a]++;
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
         }
+        fprintf(stderr, "TEST 2 \n");
         // decrement
-        if(strcmp("dec", command[0]) == 0) {
+        if(strcmp("dec", command) == 0) {
             values[a]--;
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
