@@ -117,6 +117,10 @@ int main( int argc, char *argv[] ) {
         indexA[0] = buffer[index];
         index = index + 2;
         int a  = atoi(indexA);
+        if(a < 0 || a > argc - 2) {
+            mq_send( clientQueue, "error", sizeof( "error" ), 0 ); 
+            continue;
+        }
 
         // increment
         if(strcmp("inc", command) == 0) {
@@ -138,6 +142,10 @@ int main( int argc, char *argv[] ) {
         char indexB[] = "\0\0";
         indexB[0] = buffer[index];
         int b  = atoi(indexB);
+        if(b < 0 || b > argc - 2) {
+            mq_send( clientQueue, "error", sizeof( "error" ), 0 ); 
+            continue;
+        }
 
         //swap
         if(strcmp("swap", command) == 0){
