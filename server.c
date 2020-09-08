@@ -1,20 +1,3 @@
-
-
-Skip to content
-Using North Carolina State University Mail with screen readers
-1 of 3,003
-Server
-Inbox
-x
-
-Ryan Bennison
-Attachments
-8:20 PM (53 minutes ago)
-to me
-
-
-Attachments area
-
 #include "common.h"
 #include <stdlib.h>
 #include <stdbool.h>
@@ -178,5 +161,3 @@ int main( int argc, char *argv[] ) {
 
   return 0;
 }
-server.c
-Displaying server.c.
