@@ -70,8 +70,6 @@ int main( int argc, char *argv[] ) {
     if( len > 0 ) {
         char command[8];
         memset(command, '\0', 8);
-        int a;
-        int b;
         int index = 1;
         int element = 0;
         for(int i = 0; i < len - 1; i++) {
@@ -90,7 +88,7 @@ int main( int argc, char *argv[] ) {
             continue;
         }
         
-        char indexA = "\0\0";
+        char indexA[] = "\0\0";
         indexA[0] = buffer[index];
         index++;
         int a  = atoi(indexA);
