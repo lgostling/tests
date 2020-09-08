@@ -32,7 +32,7 @@ char* numberString(int num, int *values) {
     for(int i = 0; i < num; i++) {
         index += sprintf(&s[index], "%d ", values[i]);
     }
-    return &s;
+    return s;
 }
 
 int main( int argc, char *argv[] ) {
