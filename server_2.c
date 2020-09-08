@@ -69,28 +69,28 @@ int main( int argc, char *argv[] ) {
     printf("recieved : %d\n", len);
 
     if( len > 0 ) {
-        char command[3][7];
-        memcpy(command[0], '\0', 7);
-        memcpy(command[1], '\0', 7);
-        memcpy(command[2], '\0', 7);
+        char command[7];
+        int a;
+        int b;
+
         fprintf(stderr, "Test 1\n");
         int index = 0;
         int element = 0;
         for(int i = 0; i < len - 1; i++) {
             if(buffer[i] == ' ') {
-                element++;
-                index = 0;
+                break;
             }
             command[element][index] = buffer[i];
         }
+
         fprintf(stderr, "Test 2\n");
         char responce = "success";
-        if(strcmp("report", command[0]) == 0) {
+        if(strcmp("report", command) == 0) {
             responce = numberString(argc - 1, &values);
         }
-        else if(strcmp("swap", command[0]) == 0){
-            int a = atoi(command[1]);
-            int b = atoi(command[2]);
+        else if(strcmp("swap", command) == 0){
+            a = atoi(command[1]);
+            b = atoi(command[2]);
             int temp = values[a];
             values[a] = values[b];
             values[b] = temp;
