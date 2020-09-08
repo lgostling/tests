@@ -44,7 +44,7 @@ int main( int argc, char *argv[] ) {
   // recieve reply
   char reply[ MESSAGE_LIMIT + 1 ];
   mq_receive( clientQueue, reply, sizeof( reply ), NULL );
-  printf( "%s\n", output );
+  printf( "%s\n", reply );
 
   // close queues
   mq_close( serverQueue );
