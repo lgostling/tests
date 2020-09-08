@@ -72,8 +72,6 @@ int main( int argc, char *argv[] ) {
         char command[7];
         int a;
         int b;
-
-        fprintf(stderr, "Test 1\n");
         int index = 0;
         int element = 0;
         for(int i = 0; i < len - 1; i++) {
@@ -83,10 +81,10 @@ int main( int argc, char *argv[] ) {
             command[index] = buffer[i];
         }
 
-        fprintf(stderr, "Test 2\n");
-        char responce = "success";
         if(strcmp("report", command) == 0) {
-            responce = numberString(argc - 1, &values);
+            char responce = numberString(argc - 1, &values);
+            mq_send( clientQueue, responce, sizeof( responce ), 0 );
+            continue;
         }
         else if(strcmp("swap", command) == 0){
             a = atoi(command[1]);
@@ -94,17 +92,21 @@ int main( int argc, char *argv[] ) {
             int temp = values[a];
             values[a] = values[b];
             values[b] = temp;
+            mq_send( clientQueue, "success", sizeof( "success" ), 0 );
+            continue;
         } else if(strcmp("inc", command[0]) == 0) {
             int a = atoi(command[1]);
             values[a]++;
+            mq_send( clientQueue, "success", sizeof( "success" ), 0 );
+            continue;
         } else if(strcmp("dec", command[0]) == 0) {
             int a = atoi(command[1]);
             values[a]--;
-        } else {
-            responce = "error";
+            mq_send( clientQueue, "success", sizeof( "success" ), 0 );
+            continue;
         }
-        fprintf(stderr, "Test 3\n");
-        mq_send( clientQueue, responce, sizeof( responce ), 0 );
+
+        mq_send( clientQueue, "error", sizeof( "error" ), 0 );  
     }
   }
 
