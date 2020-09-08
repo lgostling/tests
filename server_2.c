@@ -59,7 +59,7 @@ int main( int argc, char *argv[] ) {
     memset( buffer, '\0', MESSAGE_LIMIT + 1 );
     // Receive message from client on serverQueue
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
-    
+    printf("recieved : %s\n", buffer);
     if( len < 0 ) {
       continue;
     }
