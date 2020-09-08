@@ -48,7 +48,7 @@ int main( int argc, char *argv[] ) {
       printf("recived : %s", buffer);
     } 
     else {
-      fail("unable to receive message.\n");
+      fail("unable to receive messaprintf("length : %d\n", len);ge.\n");
     }
   }
 
