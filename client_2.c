@@ -29,7 +29,7 @@ int main( int argc, char *argv[] ) {
   char message[ MESSAGE_LIMIT + 1 ];
   memset(message, '\0', MESSAGE_LIMIT + 1);
   int index = 0;
-  for(int i = 0 i < argc; i++) {
+  for(int i = 0; i < argc; i++;) {
       strcpy(argv[i], message[index]);
       index += strlen(argv[i]) + 1;
       message[index - 1] = ' ';
