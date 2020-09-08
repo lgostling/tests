@@ -113,8 +113,6 @@ int main( int argc, char *argv[] ) {
 
         //swap
         if(strcmp("swap", command) == 0){
-            a = atoi(command[1]);
-            b = atoi(command[2]);
             int temp = values[a];
             values[a] = values[b];
             values[b] = temp;
