@@ -21,7 +21,7 @@ int main( int argc, char *argv[] ) {
     mq_send( server_queue, message, sizeof( message ), 0 );
     char buffer[ MESSAGE_LIMIT  + 1];
     int len = mq_receive( client_queue, buffer, sizeof( buffer ), NULL );
-    
+    printf("%s\n", buffer);
     mq_close( client_queue );
     mq_close( server_queue );
 
