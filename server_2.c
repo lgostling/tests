@@ -80,7 +80,7 @@ int main( int argc, char *argv[] ) {
             }
             command[index] = buffer[i];
         }
-
+        fprintf(stderr, "Test 1");
         if(strcmp("report", command) == 0) {
 
             fprintf(stderr, "Test 1");
