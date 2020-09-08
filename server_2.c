@@ -73,13 +73,14 @@ int main( int argc, char *argv[] ) {
         memset(command, '\0', 8);
         int a;
         int b;
-        int index = 0;
+        int index = 1;
         int element = 0;
         for(int i = 0; i < len - 1; i++) {
             if(buffer[i] == ' ') {
                 break;
             }
-            command[index] = buffer[i];
+            command[i] = buffer[i];
+            index++;
         }
 
         fprintf(stderr, "%s\n", command);
