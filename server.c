@@ -50,6 +50,7 @@ int main( int argc, char *argv[] ) {
     // else {
     //   fail("unable to receive message.\n");
     // }
+    printf("test\n");
   }
 
   // Close our two message queues (and delete them).
