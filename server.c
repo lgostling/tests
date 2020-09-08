@@ -43,7 +43,7 @@ int main( int argc, char *argv[] ) {
     char buffer[ MESSAGE_LIMIT  + 1];
     memset(buffer, '\0', MESSAGE_LIMIT + 1);
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
-    cout << "Test\n"
+    cout << "Test\n";
     if(len > 0) {
       char message[len + 1];
       for(int i = 0; i < len; i++) {
