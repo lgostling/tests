@@ -89,17 +89,15 @@ int main( int argc, char *argv[] ) {
             continue;
         }
         
-
-        fprintf(stderr, "TEST 1 \n");
         char indexA[] = "\0\0";
         indexA[0] = buffer[index];
         index++;
         int a  = atoi(indexA);
-        fprintf(stderr, "TEST 2 \n");
 
         // increment
         if(strcmp("inc", command[0]) == 0) {
-            values[a] = values[a] + 1;
+            fprintf(stderr, "TEST 1 \n");
+            //values[a] = values[a] + 1;
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
         }
