@@ -27,6 +27,7 @@ void sigintHandler( int sig_num ) {
 
 char* numberString(int num, int *values) {
     char s[MESSAGE_LIMIT + 1];
+    memset(s, '\0', MESSAGE_LIMIT + 1);
     int index = 0;
     for(int i = 0; i < num; i++) {
         index += sprintf(&s[index], "%d ", values[i]);
