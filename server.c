@@ -44,9 +44,9 @@ int main( int argc, char *argv[] ) {
     memset(buffer, '\0', MESSAGE_LIMIT + 1);
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
     printf("length : %d\n", len);
-    if(len > 0) {
-      printf("recived : %s", buffer);
-    } 
+    // if(len > 0) {
+    //   printf("recived : %s", buffer);
+    // } 
     else {
       fail("unable to receive message.\n");
     }
