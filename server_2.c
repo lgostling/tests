@@ -84,7 +84,7 @@ int main( int argc, char *argv[] ) {
         if(strcmp("report", command) == 0) {
 
             fprintf(stderr, "Test 1");
-            char* responce = numberString(argc - 1, &values)
+            char* responce = numberString(argc - 1, &values);
             mq_send( clientQueue, responce, strlen(responce), 0 );
             fprintf(stderr, "Test 2");
             continue;
