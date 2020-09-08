@@ -47,9 +47,9 @@ int main( int argc, char *argv[] ) {
     // if(len > 0) {
     //   printf("recived : %s", buffer);
     // } 
-    else {
-      fail("unable to receive message.\n");
-    }
+    // else {
+    //   fail("unable to receive message.\n");
+    // }
   }
 
   // Close our two message queues (and delete them).
