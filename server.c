@@ -41,12 +41,7 @@ int main( int argc, char *argv[] ) {
   // Repeatedly read and process client messages.
   while ( true ) {
     char buffer[ MESSAGE_LIMIT  + 1];
-    memset(buffer, '\0', MESSAGE_LIMIT + 1);
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
-    printf("length : %d\n", len);
-
-    memset(buffer, '\0', MESSAGE_LIMIT + 1);
-    len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
     printf("length : %d\n", len);
 
     // if(len > 0) {
