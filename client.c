@@ -13,8 +13,12 @@ static void fail( char const *message ) {
 int main( int argc, char *argv[] ) {
     mqd_t server_queue = mq_open(SERVER_QUEUE, O_WRONLY);
     mqd_t client_queue = mq_open(CLIENT_QUEUE, O_RDONLY);
-
-    mq_send( server_queue, "TEST", sizeof( "TEST" ), 0 );
+    char message[6];
+    memset(message, '\0', 6);
+    for (int i = 0; i < 5;i++) {
+      message[i] = 'a';
+    }
+    mq_send( server_queue, message, sizeof( message ), 0 );
 
     mq_close( client_queue );
     mq_close( server_queue );
