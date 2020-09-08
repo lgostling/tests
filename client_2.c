@@ -43,7 +43,7 @@ int main( int argc, char *argv[] ) {
 //  buffer[ bufferIdx + 1 ] = '\0'; 
 
   // Send buffer to server on server queue
-  mq_send( serverQueue, "test", strlen( buffer ), 0 );
+  mq_send( serverQueue, "test", strlen( "test" ), 0 );
   // printf( "Sent message %s\n", buffer );
   // Receive output message from client queue (either success or failure)
   char output[ MESSAGE_LIMIT + 1 ];
