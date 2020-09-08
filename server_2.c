@@ -90,7 +90,9 @@ int main( int argc, char *argv[] ) {
         else if(strcmp("swap", command[0]) == 0){
             int a = atoi(command[1]);
             int b = atoi(command[2]);
-            swap(&values, a, b);
+            int temp = values[a];
+            values[a] = values[b];
+            values[b] = temp;
         } else if(strcmp("inc", command[0]) == 0) {
             int a = atoi(command[1]);
             values[a]++;
