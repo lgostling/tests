@@ -30,9 +30,13 @@ int main( int argc, char *argv[] ) {
   memset(message, '\0', MESSAGE_LIMIT + 1);
   int index = 0;
   for(int i = 0; i < argc; i++) {
-      strcpy(&argv[i], &message[index]);
-      index += strlen(argv[i]) + 1;
-      message[index - 1] = ' ';
+      int l = strlen(argv[i]);
+      for(int c = 0; c < l; c++) {
+          message[index] = argv[i][c];
+          index ++;
+      }
+      message[index] = ' ';
+      index++;
   }
 
   // Send buffer to server on server queue
