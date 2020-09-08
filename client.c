@@ -14,8 +14,7 @@ int main( int argc, char *argv[] ) {
     mqd_t server_queue = mq_open(SERVER_QUEUE, O_WRONLY);
     mqd_t client_queue = mq_open(CLIENT_QUEUE, O_RDONLY);
 
-    char message[] = "test message";
-    mq_send( server_queue, message, strlen( message ), 0 );
+    mq_send( server_queue, "TEST", sizeof( "TEST" ), 0 );
 
     mq_close( client_queue );
     mq_close( server_queue );
