@@ -111,6 +111,7 @@ int main( int argc, char *argv[] ) {
         
         if(len <= index || buffer[index] > '9' || buffer[index] < '0') {
             mq_send( clientQueue, "error", sizeof( "error" ), 0 ); 
+            continue;
         }
         char indexA[] = "\0\0";
         indexA[0] = buffer[index];
@@ -131,7 +132,8 @@ int main( int argc, char *argv[] ) {
         }
 
         if(len <= index || buffer[index] > '9' || buffer[index] < '0') {
-            mq_send( clientQueue, "error", sizeof( "error" ), 0 ); 
+            mq_send( clientQueue, "error", sizeof( "error" ), 0 );
+            continue; 
         }
         char indexB[] = "\0\0";
         indexB[0] = buffer[index];
