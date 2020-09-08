@@ -21,29 +21,22 @@ int main( int argc, char *argv[] ) {
   mqd_t serverQueue = mq_open( SERVER_QUEUE, O_WRONLY );
   mqd_t clientQueue = mq_open( CLIENT_QUEUE, O_RDONLY );
 
-  if( serverQueue == -1 || clientQueue == -1 )
-    fail( "Failed to create queues" );
-  
-  char buffer[ MESSAGE_LIMIT + 1 ];
-  
-  // Store message from command line arguments in buffer
-//   int bufferIdx = 0;
-//   for( int i = 1; i <= argc - 1; i++ ) {
-//     int currentLen = strlen( argv[ i ] );
-//     // Input next command line argument to buffer
-//     for( int j = 0; j < currentLen; j++ ) {
-//       buffer[ bufferIdx ] = argv[ i ][ j ];
-//       bufferIdx++;
-//     }
-//     // Add a space to buffer after current argv is input
-//     buffer[ bufferIdx ] = ' ';
-//     bufferIdx++;  
-//   }
-
-//  buffer[ bufferIdx + 1 ] = '\0'; 
+  if( serverQueue == -1 || clientQueue == -1 ){
+      fail( "Failed to create queues" );
+  }
+    
+  // create message
+  char message[ MESSAGE_LIMIT + 1 ];
+  memset(message, '\0', MESSAGE_LIMIT + 1);
+  int index = 0;
+  for(int i = 0 i < argc; i++) {
+      strcpy(argv[i], message[index]);
+      index += strlen(argv[i]) + 1;
+      message[index - 1] = ' ';
+  }
 
   // Send buffer to server on server queue
-  mq_send( serverQueue, "test", strlen( "test" ), 0 );
+  mq_send( serverQueue, message, strlen( message ), 0 );
   // printf( "Sent message %s\n", buffer );
   // Receive output message from client queue (either success or failure)
   char output[ MESSAGE_LIMIT + 1 ];
