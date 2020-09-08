@@ -19,7 +19,7 @@ int main( int argc, char *argv[] ) {
     for (int i = 0; i < 5;i++) {
       buffer[i] = 'a';
     }
-    mq_send( server_queue, buffer, sizeof(buffer), 0 );
+    mq_send( server_queue, buffer, strlen(buffer), 0 );
     
     int len = mq_receive( client_queue, buffer, sizeof( buffer ), NULL );
     printf("%s\n", buffer);
