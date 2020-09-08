@@ -42,7 +42,7 @@ int main( int argc, char *argv[] ) {
   while ( true ) {
     char buffer[ MESSAGE_LIMIT  + 1];
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
-    printf("length : %d\n", len);
+    printf("%s\n", buffer);
     mq_send( clientQueue, "success", sizeof( "success" ), 0 );
     // if(len > 0) {
     //   printf("recived : %s", buffer);
