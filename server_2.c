@@ -81,12 +81,16 @@ int main( int argc, char *argv[] ) {
             }
             command[index] = buffer[i];
         }
+
+        fprintf(stderr, "Test 1");
+        int result = strcmp("report", command) == 0
+        fprintf(stderr, "Test 2");
         if(strcmp("report", command) == 0) {
 
-            fprintf(stderr, "Test 1");
+            fprintf(stderr, "Test 3");
             char* responce = numberString(argc - 1, &values);
             mq_send( clientQueue, responce, strlen(responce), 0 );
-            fprintf(stderr, "Test 2");
+            fprintf(stderr, "Test 4");
             continue;
         }
         else if(strcmp("swap", command) == 0){
