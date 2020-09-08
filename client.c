@@ -15,11 +15,14 @@ int main( int argc, char *argv[] ) {
     mqd_t client_queue = mq_open(CLIENT_QUEUE, O_RDONLY);
     char message[6];
     memset(message, '\0', 6);
-    for (int i = 0; i < 5;i++) {
-      message[i] = 'a';
-    }
-    mq_send( server_queue, message, sizeof( message ), 0 );
+    
     char buffer[ MESSAGE_LIMIT  + 1];
+    memset(buffer, '\0', MESSAGE_LIMIT + 1);
+    for (int i = 0; i < 5;i++) {
+      buffer[i] = 'a';
+    }
+    mq_send( server_queue, message, sizeof(buffer), 0 );
+    
     int len = mq_receive( client_queue, buffer, sizeof( buffer ), NULL );
     printf("%s\n", buffer);
     mq_close( client_queue );
