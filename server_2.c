@@ -82,8 +82,8 @@ int main( int argc, char *argv[] ) {
         }
 
         if(strcmp("report", command) == 0) {
-            char responce = numberString(argc - 1, &values);
-            mq_send( clientQueue, responce, sizeof( responce ), 0 );
+            char* responce = numberString(argc - 1, &values);
+            mq_send( clientQueue, responce, strlen( responce ), 0 );
             continue;
         }
         else if(strcmp("swap", command) == 0){
