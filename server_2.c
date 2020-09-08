@@ -25,22 +25,11 @@ void sigintHandler( int sig_num ) {
   running = 0;
 }
 
-char* numberString(int num, int *values) {
-    char s[MESSAGE_LIMIT + 1];
-    memset(s, '\0', MESSAGE_LIMIT + 1);
+void numberString(int num, int *values, char* str) {
     int index = 0;
-    for(int i = ; i < num; i++) {
-        char n[] = itoa(values[i]);
-        int len = strlen(n);
-        for(int c = 0; c < len; c++) {
-            s[index] = n[c];
-            index++;
-        }
-        s[index] = ' ';
-        index++;
+    for(int i = 0; i < num; i++) {
+        index += sprintf(&str[index], "%d ", values[i]);
     }
-    
-    return s;
 }
 
 int main( int argc, char *argv[] ) {
@@ -112,9 +101,11 @@ int main( int argc, char *argv[] ) {
 
         // report
         if(strcmp("report", command) == 0) {
-            char* responce = numberString(argc - 1, &values);
-            fprintf(stderr, "%s\n", responce);
-            mq_send( clientQueue, responce, strlen(responce), 0 );
+            char numString[MESSAGE_LIMIT + 1];
+            memset(numString, '\0', MESSAGE_LIMIT + 1);
+            numberString(argc - 1, &values, &numString);
+            fprintf(stderr, "%s\n", numString);
+            mq_send( clientQueue, numString, strlen(numString), 0 );
             continue;
         }
         
@@ -158,8 +149,9 @@ int main( int argc, char *argv[] ) {
         mq_send( clientQueue, "error", sizeof( "error" ), 0 );  
     }
   }
-
-  printf("\n%s\n", numberString(argc - 1, &values));
+  char numString[MESSAGE_LIMIT + 1];
+  memset(numString, '\0', MESSAGE_LIMIT + 1);
+  printf("\n%s\n", numberString(argc - 1, &values, &numString));
 
   // Close our two message queues (and delete them).
   mq_close( clientQueue );
