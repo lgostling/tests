@@ -64,7 +64,7 @@ int main( int argc, char *argv[] ) {
 
   if(!invalid) { 
     for(int i = 0; i < argc - 1; i++) {
-        for(int c = 0; c < strlen( argv[i + 1] ); i++) {
+        for(int c = 0; c < strlen( argv[i + 1] ); c++) {
             if(argv[i + 1][c] < '0' || argv[i + 1][c] > '9') {
                 invalid = true;
             }
@@ -73,7 +73,7 @@ int main( int argc, char *argv[] ) {
   }
 
   if(invalid) {
-      printf("Invalid list of values");
+      printf("Invalid list of values\n");
       return EXIT_FAILURE;
   }
 
