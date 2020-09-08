@@ -83,7 +83,7 @@ int main( int argc, char *argv[] ) {
         }
 
         fprintf(stderr, "Test 1");
-        int result = strcmp("report", command) == 0
+        int result = strcmp("report", command) == 0;
         fprintf(stderr, "Test 2");
         if(strcmp("report", command) == 0) {
 
