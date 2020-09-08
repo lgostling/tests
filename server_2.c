@@ -69,7 +69,8 @@ int main( int argc, char *argv[] ) {
     printf("recieved : %d\n", len);
 
     if( len > 0 ) {
-        char command[7];
+        char command[8];
+        memset(command, '\0', 8);
         int a;
         int b;
         int index = 0;
@@ -80,7 +81,6 @@ int main( int argc, char *argv[] ) {
             }
             command[index] = buffer[i];
         }
-        fprintf(stderr, "Test 1");
         if(strcmp("report", command) == 0) {
 
             fprintf(stderr, "Test 1");
