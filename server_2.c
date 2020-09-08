@@ -56,7 +56,7 @@ int main( int argc, char *argv[] ) {
 
   int values[argc - 1];
   
-  bool invalid = false
+  bool invalid = false;
   // error check inputs
   if(argc > 10 || argv < 1) {
       invalid = true
