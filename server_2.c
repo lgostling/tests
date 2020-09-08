@@ -82,7 +82,7 @@ int main( int argc, char *argv[] ) {
         }
 
         if(strcmp("report", command) == 0) {
-            mq_send( clientQueue, numberString(argc - 1, &values);, MESSAGE_LIMIT, 0 );
+            mq_send( clientQueue, numberString(argc - 1, &values), MESSAGE_LIMIT, 0 );
             continue;
         }
         else if(strcmp("swap", command) == 0){
