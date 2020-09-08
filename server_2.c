@@ -20,7 +20,7 @@ static void fail( char const *message ) {
 // This is safer than trying to print in the signal handler.
 static int running = 1;
 
-/** Sig int handler method, used for ctrl-c */
+// function for ending on ctrl+c
 void sigintHandler( int sig_num ) {
   running = 0;
 }
@@ -56,6 +56,27 @@ int main( int argc, char *argv[] ) {
 
   int values[argc - 1];
   
+  bool invalid = false
+  // error check inputs
+  if(argc > 10 || argv < 1) {
+      invalid = true
+  }
+
+  if(!invalid) { 
+    for(int i = 0; i < argc - 1; i++) {
+        for(int c = 0; c < strlen( argv[i + 1] ); i++) {
+            if(argv[i + 1][c] < '0' || argv[i + 1][c] > '9') {
+                invalid = true;
+            }
+        }
+    }
+  }
+
+  if(invalid) {
+      printf("Invalid list of values");
+      return EXIT_FAILURE;
+  }
+
   for(int i = 0; i < argc - 1; i++) {
     values[i] = atoi(argv[i + 1]);
   }
@@ -80,7 +101,6 @@ int main( int argc, char *argv[] ) {
             index++;
         }
 
-        fprintf(stderr, "%s\n", command);
         // report
         if(strcmp("report", command) == 0) {
             char* responce = numberString(argc - 1, &values);
@@ -89,6 +109,9 @@ int main( int argc, char *argv[] ) {
             continue;
         }
         
+        if(len <= index || buffer[index] > '9' || buffer[index] < '0') {
+            mq_send( clientQueue, "error", sizeof( "error" ), 0 ); 
+        }
         char indexA[] = "\0\0";
         indexA[0] = buffer[index];
         index = index + 2;
@@ -107,6 +130,9 @@ int main( int argc, char *argv[] ) {
             continue;
         }
 
+        if(len <= index || buffer[index] > '9' || buffer[index] < '0') {
+            mq_send( clientQueue, "error", sizeof( "error" ), 0 ); 
+        }
         char indexB[] = "\0\0";
         indexB[0] = buffer[index];
         int b  = atoi(indexB);
@@ -133,5 +159,5 @@ int main( int argc, char *argv[] ) {
   mq_unlink( SERVER_QUEUE );
   mq_unlink( CLIENT_QUEUE );
 
-  return 0;
+  return EXIT_SUCCESS;
 }
