@@ -73,7 +73,7 @@ int main( int argc, char *argv[] ) {
         memcpy(command[0], '\0', 7);
         memcpy(command[1], '\0', 7);
         memcpy(command[2], '\0', 7);
-
+        fprintf(stderr, "Test 1\n");
         int index = 0;
         int element = 0;
         for(int i = 0; i < len - 1; i++) {
@@ -83,6 +83,7 @@ int main( int argc, char *argv[] ) {
             }
             command[element][index] = buffer[i];
         }
+        fprintf(stderr, "Test 2\n");
         char responce = "success";
         if(strcmp("report", command[0]) == 0) {
             responce = numberString(argc - 1, &values);
@@ -102,7 +103,8 @@ int main( int argc, char *argv[] ) {
         } else {
             responce = "error";
         }
-      mq_send( clientQueue, responce, sizeof( responce ), 0 );
+        fprintf(stderr, "Test 3\n");
+        mq_send( clientQueue, responce, sizeof( responce ), 0 );
     }
   }
 
