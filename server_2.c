@@ -84,18 +84,22 @@ int main( int argc, char *argv[] ) {
         // report
         if(strcmp("report", command) == 0) {
             char* responce = numberString(argc - 1, &values);
+            fprintf(stderr, "%s\n" responce);
             mq_send( clientQueue, responce, strlen(responce), 0 );
             continue;
         }
         
+
+        fprintf(stderr, "TEST 1 \n");
         char indexA[] = "\0\0";
         indexA[0] = buffer[index];
         index++;
         int a  = atoi(indexA);
+        fprintf(stderr, "TEST 2 \n");
 
         // increment
         if(strcmp("inc", command[0]) == 0) {
-            values[a]++;
+            values[a] = values[a] + 1;
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
         }
