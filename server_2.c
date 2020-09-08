@@ -91,7 +91,7 @@ int main( int argc, char *argv[] ) {
         
         char indexA[] = "\0\0";
         indexA[0] = buffer[index];
-        index++;
+        index = index + 2;
         int a  = atoi(indexA);
 
         // increment
@@ -100,7 +100,6 @@ int main( int argc, char *argv[] ) {
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
         }
-        fprintf(stderr, "TEST 2 \n");
         // decrement
         if(strcmp("dec", command) == 0) {
             values[a]--;
