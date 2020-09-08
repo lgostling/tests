@@ -11,10 +11,6 @@ static void fail( char const *message ) {
 }
 
 int main( int argc, char *argv[] ) {
-
-  mq_unlink( SERVER_QUEUE );
-  mq_unlink( CLIENT_QUEUE );
-
     mqd_t server_queue = mq_open(SERVER_QUEUE, O_WRONLY);
     mqd_t client_queue = mq_open(CLIENT_QUEUE, O_RDONLY);
 
