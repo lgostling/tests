@@ -66,7 +66,6 @@ int main( int argc, char *argv[] ) {
 
     // recieve command
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
-    printf("recieved : %d\n", len);
 
     if( len > 0 ) {
         char command[8];
@@ -86,29 +85,30 @@ int main( int argc, char *argv[] ) {
         fprintf(stderr, "%s\n", command);
 
         if(strcmp("report", command) == 0) {
-
-            fprintf(stderr, "Test 3");
             char* responce = numberString(argc - 1, &values);
             mq_send( clientQueue, responce, strlen(responce), 0 );
-            fprintf(stderr, "Test 4");
             continue;
         }
-        else if(strcmp("swap", command) == 0){
+        
+        char indexA = "\0\0";
+        indexA[0] = buffer[index];
+        index++;
+        int a  = atoi(indexA);
+
+        if(strcmp("inc", command[0]) == 0) {
+            values[a]++;
+            mq_send( clientQueue, "success", sizeof( "success" ), 0 );
+            continue;
+        } else if(strcmp("dec", command[0]) == 0) {
+            values[a]--;
+            mq_send( clientQueue, "success", sizeof( "success" ), 0 );
+            continue;
+        } else if(strcmp("swap", command) == 0){
             a = atoi(command[1]);
             b = atoi(command[2]);
             int temp = values[a];
             values[a] = values[b];
             values[b] = temp;
-            mq_send( clientQueue, "success", sizeof( "success" ), 0 );
-            continue;
-        } else if(strcmp("inc", command[0]) == 0) {
-            int a = atoi(command[1]);
-            values[a]++;
-            mq_send( clientQueue, "success", sizeof( "success" ), 0 );
-            continue;
-        } else if(strcmp("dec", command[0]) == 0) {
-            int a = atoi(command[1]);
-            values[a]--;
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
         }
