@@ -39,7 +39,7 @@ int main( int argc, char *argv[] ) {
     fail( "Can't create the needed message queues" );
 
   // Repeatedly read and process client messages.
-  while ( running ) {
+  while ( true ) {
     char buffer[ MESSAGE_LIMIT  + 1];
     memset(buffer, '\0', MESSAGE_LIMIT + 1);
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
