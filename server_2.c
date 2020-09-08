@@ -81,7 +81,7 @@ int main( int argc, char *argv[] ) {
         }
 
         fprintf(stderr, "%s\n", command);
-
+        // report
         if(strcmp("report", command) == 0) {
             char* responce = numberString(argc - 1, &values);
             mq_send( clientQueue, responce, strlen(responce), 0 );
@@ -93,15 +93,25 @@ int main( int argc, char *argv[] ) {
         index++;
         int a  = atoi(indexA);
 
+        // increment
         if(strcmp("inc", command[0]) == 0) {
             values[a]++;
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
-        } else if(strcmp("dec", command[0]) == 0) {
+        }
+        // decrement
+        if(strcmp("dec", command[0]) == 0) {
             values[a]--;
             mq_send( clientQueue, "success", sizeof( "success" ), 0 );
             continue;
-        } else if(strcmp("swap", command) == 0){
+        }
+
+        char indexB[] = "\0\0";
+        indexB[0] = buffer[index];
+        int b  = atoi(indexB);
+
+        //swap
+        if(strcmp("swap", command) == 0){
             a = atoi(command[1]);
             b = atoi(command[2]);
             int temp = values[a];
