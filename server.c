@@ -45,11 +45,10 @@ int main( int argc, char *argv[] ) {
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
     printf("length : %d\n", len);
     if(len > 0) {
-      char message[len + 1];
+      char message[len];
       for(int i = 0; i < len; i++) {
         message[i] = buffer[i];
       }
-      message[len] = NULL;
       printf("recived : %s", message);
     } 
     else {
