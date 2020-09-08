@@ -43,14 +43,14 @@ int main( int argc, char *argv[] ) {
     char buffer[ MESSAGE_LIMIT  + 1];
     int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
     printf("length : %d\n", len);
-
+    mq_send( clientQueue, "success", sizeof( "success" ), 0 );
     // if(len > 0) {
     //   printf("recived : %s", buffer);
     // } 
     // else {
     //   fail("unable to receive message.\n");
     // }
-    printf("test\n");
+
   }
 
   // Close our two message queues (and delete them).

@@ -19,7 +19,9 @@ int main( int argc, char *argv[] ) {
       message[i] = 'a';
     }
     mq_send( server_queue, message, sizeof( message ), 0 );
-
+    char buffer[ MESSAGE_LIMIT  + 1];
+    int len = mq_receive( client_queue, buffer, sizeof( buffer ), NULL );
+    
     mq_close( client_queue );
     mq_close( server_queue );
 
