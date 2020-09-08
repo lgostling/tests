@@ -49,7 +49,7 @@ int main( int argc, char *argv[] ) {
       for(int i = 0; i < len; i++) {
         message[i] = buffer[i];
       }
-      printf("recived : %s", message);
+      //printf("recived : %s", message);
     } 
     else {
       fail("unable to receive message.\n");
