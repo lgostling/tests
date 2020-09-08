@@ -80,7 +80,7 @@ int main( int argc, char *argv[] ) {
             if(buffer[i] == ' ') {
                 break;
             }
-            command[element][index] = buffer[i];
+            command[index] = buffer[i];
         }
 
         fprintf(stderr, "Test 2\n");
