@@ -46,7 +46,7 @@ int main( int argc, char *argv[] ) {
     printf("length : %d\n", len);
 
     memset(buffer, '\0', MESSAGE_LIMIT + 1);
-    int len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
+    len = mq_receive( serverQueue, buffer, sizeof( buffer ), NULL );
     printf("length : %d\n", len);
 
     // if(len > 0) {
