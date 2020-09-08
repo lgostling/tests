@@ -25,7 +25,7 @@ void sigintHandler( int sig_num ) {
   running = 0;
 }
 
-char* numberString(int num, *int values) {
+char* numberString(int num, int *values) {
     char s[MESSAGE_LIMIT + 1];
     int index = 0;
     for(int i = 0; i < num; i++) {
