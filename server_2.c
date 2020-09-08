@@ -149,11 +149,11 @@ int main( int argc, char *argv[] ) {
         mq_send( clientQueue, "error", sizeof( "error" ), 0 );  
     }
   }
-  
+
   char numString[MESSAGE_LIMIT + 1];
   memset(numString, '\0', MESSAGE_LIMIT + 1);
   numberString(argc - 1, &values, &numString);
-  printf("\n%s\n", numberString);
+  printf("\n%s\n", numString);
 
   // Close our two message queues (and delete them).
   mq_close( clientQueue );
