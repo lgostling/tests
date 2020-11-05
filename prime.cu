@@ -112,14 +112,14 @@ int main( int argc, char *argv[] ) {
   int blocksPerGrid = ( vCount + threadsPerBlock - 1 ) / threadsPerBlock;
 
   // Run our kernel on these block/grid dimensions (you'll need to add some parameters)
-  checkPrime<<<blocksPerGrid, threadsPerBlock>>>( vCount, report, *valueList, *resultsList );
+  checkPrime<<<blocksPerGrid, threadsPerBlock>>>( vCount, report, valueList, resultsList );
   if ( cudaGetLastError() != cudaSuccess )
     fail( "Failure in CUDA kernel execution." );
 
   // Add code to copy results back to the host then add up the total number
   // of primes found.
   
-  int* results = malloc(vCount * sizeof(int));
+  int* results = (int*)malloc(vCount * sizeof(int));
 
   if ( cudaMemcpy( results, resultsList, vCount * sizeof(int),
                    cudaMemcpyDeviceToHost) != cudaSuccess )
@@ -137,7 +137,7 @@ int main( int argc, char *argv[] ) {
   // Free memory on the device and the host.
   cudaFree(resultsList);
   cudaFree(valueList);
-  free( results )
+  free( results );
   free( vList );
 
   cudaDeviceReset();
