@@ -1,0 +1,33 @@
+Luke Gostling - Operating Systems, Homework 1, Problem 1
+
+(a) Recall that the exec() system call comes in a variety of forms (execl(), execlp(), execle(), etc).
+What’s the difference between execl() and execlp().
+
+The execl() system call begins a new process using the path of the file to be executed. The execlp()
+system call performs the same function however it takes in the name of the file to be run and automatically
+searches for the file in the directories sepcified in the PATH environment.
+
+(b) If a process calls alarm() to schedule delivery of the alarm signal, then calls fork(), will the child
+process receive the alarm signal, or just the parent?
+
+Only the parent will recieve the alarm. The documentation for the fork() system call states that children
+do not inheret timers (including alrams) from their parent processes.
+
+
+(c) Consider a file descriptor that was opened with the O NONBLOCK flag. If a process calls read()
+on this file descriptor and no input is currently available, what will happen? How can the process
+tell that nothing was available for reading? (you can assume the file descriptor doesn’t represent
+a socket)
+
+The read request will return -1 and the errno will be set to EAGAIN or EWOULDBLOCK to indicate that
+input requested was no available and that it woul dhave blocked execution without the NONBLOCK option.
+
+
+(d) Lots of system calls will return immediately if a signal is delivered while the process is waiting
+in the system call. For example, mq receive() is like this. If a signal is delivered during a call to
+mq receive(), how can a program tell that mq receive() returned because of a signal rather than
+the arrival of a message?
+
+If mq_recieve() is interrupted by a signal handler then it will return -1 and the errno will be set to
+EINTR.
+
