@@ -68,7 +68,6 @@ __global__ void checkPrime( int vCount,
       }
     }
     if(prime){
-      fprintf(stdout, "%d\n", value);
       results[idx] = 1;
     } else{
       results[idx] = 0;
@@ -128,6 +127,9 @@ int main( int argc, char *argv[] ) {
   int primeCount = 0;
   for(int i = 0; i < vCount; i++) {
     if(results[i] == 1) {
+      if(report) {
+        fprintf(stdout, "%d\n", vList[i]);
+      }
       primeCount++;
     }
   }
